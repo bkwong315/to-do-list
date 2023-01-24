@@ -2,3 +2,14 @@
   padding: 0;
   margin: 0;
 }
+
+.app-container {
+  display: grid;
+  grid-template-rows: 1fr 9fr;
+  grid-template-columns: 1fr 9fr;
+  min-height: 100vh;
+}
+
+header {
+  grid-area: 1 / 1 / 2 / 3;
+}

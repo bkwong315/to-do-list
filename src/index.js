@@ -1,11 +1,14 @@
+import Header from './components/Header/Header';
+
 import './style.scss';
 
 const App = (() => {
   let appContainer = document.createElement('div');
+  let header = Header();
 
-  appContainer.textContent = 'Hello World';
+  appContainer.classList.add('app-container');
 
-  appContainer.classList.add('app');
+  appContainer.appendChild(header);
 
   return appContainer;
 })();
