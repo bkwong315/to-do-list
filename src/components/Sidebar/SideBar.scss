@@ -1,0 +1,15 @@
+$secondary-color: #abe1ff;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: $secondary-color;
+  padding: 1.5rem;
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

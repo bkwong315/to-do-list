@@ -1,0 +1,24 @@
+$primary-color: #00a3ff;
+
+.list-item {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 1rem;
+
+  .notification {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-color;
+    border-radius: 100%;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .edit-btn {
+    justify-self: end;
+    width: 1rem;
+  }
+}
