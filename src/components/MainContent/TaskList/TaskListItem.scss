@@ -1,0 +1,104 @@
+$primary-color: #00a3ff;
+$secondary-color: #abe1ff;
+
+@mixin setPriorityColor($priority, $setTextColor: true) {
+  $priority-color: #e60000;
+
+  @if $priority == medium {
+    $priority-color: #ff9900;
+  } @else if $priority == low {
+    $priority-color: #00b107;
+  }
+
+  @if $setTextColor {
+    color: $priority-color;
+  }
+
+  border-color: $priority-color;
+}
+
+@mixin buttonShape {
+  padding: 0.5rem 1rem;
+  border: 2px solid #000;
+  border-radius: 12px;
+}
+
+.task-list-item {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: $secondary-color;
+  border-left: 0.5rem solid black;
+  height: 2rem;
+
+  &[data-priority='high'] {
+    @include setPriorityColor(high, $setTextColor: false);
+
+    & .priority-display {
+      @include setPriorityColor(high);
+    }
+  }
+
+  &[data-priority='medium'] {
+    @include setPriorityColor(medium, $setTextColor: false);
+
+    & .priority-display {
+      @include setPriorityColor(medium);
+    }
+  }
+
+  &[data-priority='low'] {
+    @include setPriorityColor(low, $setTextColor: false);
+
+    & .priority-display {
+      @include setPriorityColor(low);
+    }
+  }
+
+  .start-section,
+  .end-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .end-section {
+    justify-content: flex-end;
+  }
+
+  img {
+    width: 1rem;
+  }
+}
+
+.start-section {
+  input[type='checkbox'] {
+    appearance: none;
+    background: $primary-color;
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.end-section {
+  button {
+    @include buttonShape;
+
+    background: none;
+  }
+
+  .priority-display {
+    @include buttonShape;
+
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    width: 4rem;
+  }
+
+  span {
+    width: 4rem;
+  }
+}

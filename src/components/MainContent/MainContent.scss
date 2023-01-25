@@ -1,0 +1,29 @@
+$primary-color: #00a3ff;
+
+.main-content {
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 2rem;
+  padding: 2rem;
+
+  h2 {
+    padding: 1rem;
+    background-color: $primary-color;
+    border-radius: 12px;
+    color: white;
+    font-size: 2rem;
+  }
+
+  & > button {
+    appearance: none;
+    border: none;
+    background: #f3f3f3;
+    padding: 1rem;
+    border-radius: 12px;
+
+    &:hover {
+      background: #dbdbdb;
+      cursor: pointer;
+    }
+  }
+}
