@@ -1,15 +1,24 @@
 * {
   padding: 0;
   margin: 0;
+  background-color: rgba(100, 100, 100, 0.2);
 }
 
 .app-container {
   display: grid;
-  grid-template-rows: 1fr 9fr;
+  grid-template-rows: max-content 1fr;
   grid-template-columns: 1.5fr 8.5fr;
   min-height: 100vh;
 }
 
 header {
   grid-area: 1 / 1 / 2 / 3;
+}
+
+.sidebar {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.task-list {
+  grid-area: 2 / 2 / 3 / 3;
 }
