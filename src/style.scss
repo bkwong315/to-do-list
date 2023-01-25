@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,700;1,700&display=swap');
+
 * {
   padding: 0;
   margin: 0;
-  background-color: rgba(100, 100, 100, 0.2);
+  font-weight: bold;
+  font-family: 'Noto Serif', serif;
 }
 
 .app-container {
@@ -19,6 +22,6 @@ header {
   grid-area: 2 / 1 / 3 / 2;
 }
 
-.task-list {
+.main-content {
   grid-area: 2 / 2 / 3 / 3;
 }
