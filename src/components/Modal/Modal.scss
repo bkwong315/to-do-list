@@ -1,0 +1,27 @@
+$primary-color: #00a3ff;
+$secondary-color: #abe1ff;
+
+.modal-container {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-window {
+  & > h2 {
+    background-color: $primary-color;
+    padding: 0.5rem 1rem;
+    border-radius: 12px 12px 0 0;
+    color: #fff;
+  }
+
+  & > .modal-content {
+    background-color: $secondary-color;
+    padding: 1rem;
+    border-radius: 0 0 12px 12px;
+  }
+}

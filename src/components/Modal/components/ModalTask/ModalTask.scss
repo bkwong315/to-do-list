@@ -1,0 +1,101 @@
+$priority-low-color: #00b107;
+$priority-medium-color: #ff9900;
+$priority-high-color: #e60000;
+
+.modal-window {
+  & > .modal-content > .task-form {
+    display: grid;
+    gap: 1rem;
+
+    & input {
+      appearance: none;
+      border: none;
+      border-radius: 8px;
+      padding: 0.25rem 0.5rem;
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+
+  & .modal-content > .task-form {
+    grid-template-rows: max-content max-content;
+
+    & .name-container,
+    .dead-line-container,
+    .priority-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    & .name-container {
+      grid-area: 1 / 1 / 2 / 2;
+
+      & > input {
+        flex: 1 1 auto;
+      }
+    }
+
+    & .dead-line-container {
+      grid-area: 1 / 2 / 2 / 3;
+    }
+
+    & .priority-container {
+      grid-area: 1 / 3 / 2 / 4;
+
+      & > select {
+        padding: 0.25rem 0.5rem;
+        border-radius: 8px;
+        background-color: #fff;
+        border: 2px solid $priority-low-color;
+        color: $priority-low-color;
+
+        &:focus-visible {
+          outline: none;
+        }
+
+        &:disabled {
+          opacity: 1;
+          appearance: none;
+        }
+
+        & > option[value='low'] {
+          color: $priority-low-color;
+        }
+
+        & > option[value='medium'] {
+          color: $priority-medium-color;
+        }
+
+        & > option[value='high'] {
+          color: $priority-high-color;
+        }
+      }
+    }
+
+    & .desc-container {
+      grid-area: 2 / 1 / 3 / 4;
+
+      & > label {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      & > textarea {
+        box-sizing: border-box;
+        width: 100%;
+        height: 16ch;
+        padding: 0.5rem;
+        resize: none;
+        border: none;
+        border-radius: 12px;
+
+        &:focus-visible {
+          outline: none;
+        }
+      }
+    }
+  }
+}
