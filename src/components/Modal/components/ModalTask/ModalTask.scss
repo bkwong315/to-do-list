@@ -23,7 +23,7 @@ $priority-high-color: #e60000;
     grid-template-rows: max-content max-content;
 
     & .name-container,
-    .dead-line-container,
+    .due-date-container,
     .priority-container {
       display: flex;
       align-items: center;
