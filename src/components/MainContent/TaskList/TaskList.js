@@ -2,28 +2,28 @@ import TaskListItem from './TaskListItem';
 
 import './TaskList.scss';
 
-const TaskList = () => {
+const TaskList = (dataFlow) => {
   let taskArr = [
     {
-      title: 'Task 1',
+      name: 'Task 1',
       completed: false,
       desc: 'Task 1 description',
       priority: 'high',
-      dueDate: new Date(2023, 0, 21),
+      dueDate: '2023-01-17',
     },
     {
-      title: 'Task 2',
+      name: 'Task 2',
       completed: false,
       desc: 'Task 2 description',
       priority: 'medium',
-      dueDate: new Date(2023, 3, 27),
+      dueDate: '2023-04-27',
     },
     {
-      title: 'Task 3',
+      name: 'Task 3',
       completed: false,
       desc: 'Task 3 description',
       priority: 'low',
-      dueDate: new Date(2023, 5, 3),
+      dueDate: '2023-06-03',
     },
   ];
 
@@ -31,9 +31,40 @@ const TaskList = () => {
 
   taskListContainer.classList.add('task-list');
 
-  for (let task of taskArr) {
-    taskListContainer.appendChild(Object.create(TaskListItem(task)).element);
-  }
+  const populateListsContainer = () => {
+    for (let task of taskArr) {
+      let newListItem = Object.create(TaskListItem({ task, dataFlow }));
+      taskListContainer.appendChild(newListItem.element);
+    }
+  };
+
+  const clearList = () => {
+    while (taskListContainer.lastElementChild) {
+      taskListContainer.removeChild(taskListContainer.lastElementChild);
+    }
+  };
+
+  const updateDisplay = () => {
+    clearList();
+    populateListsContainer();
+  };
+
+  const updateListArr = (originalItem, updatedItem) => {
+    let targetItem = taskArr.find(
+      (element) => element.name === originalItem.name
+    );
+
+    let idxOfTarget = taskArr.indexOf(targetItem);
+
+    if (targetItem !== undefined) {
+      taskArr[idxOfTarget] = updatedItem;
+    }
+
+    updateDisplay();
+  };
+
+  Object.assign(dataFlow, { updateListArr });
+  updateDisplay();
 
   return taskListContainer;
 };

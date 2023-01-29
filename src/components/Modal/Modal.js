@@ -44,6 +44,9 @@ const Modal = (props, callBack) => {
 
       updateResponse();
       closeModal();
+
+      console.log(response);
+
       callBack(response);
     }
   }

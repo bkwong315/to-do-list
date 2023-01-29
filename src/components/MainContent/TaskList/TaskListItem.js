@@ -1,16 +1,22 @@
+import updateKeyValuePairs from '../../../utility/updateKeyValuePairs';
+import formatDate from '../../../utility/formatDate';
+
 import editIcon from './imgs/edit.svg';
 import delIcon from './imgs/delete.svg';
 import './TaskListItem.scss';
 
 const TaskListItem = (props) => {
+  let { name, completed, priority, dueDate } = props.task;
+  let dataFlow = props.dataFlow;
+
   const taskListItemContainer = document.createElement('div');
   const startSection = document.createElement('div');
   const checkBox = document.createElement('input');
-  const title = document.createElement('h3');
+  const nameHeading = document.createElement('h3');
   const endSection = document.createElement('div');
   const detailsBtn = document.createElement('button');
   const priorityDisplay = document.createElement('div');
-  const dueDate = document.createElement('span');
+  const dueDateSpan = document.createElement('span');
   const editBtn = document.createElement('img');
   const delBtn = document.createElement('img');
 
@@ -22,28 +28,46 @@ const TaskListItem = (props) => {
   delBtn.classList.add('del-btn');
 
   checkBox.type = 'checkbox';
+  checkBox.checked = completed;
 
-  title.textContent = props.title;
+  nameHeading.textContent = name;
   detailsBtn.textContent = 'Details';
-  priorityDisplay.textContent = props.priority;
-  taskListItemContainer.setAttribute('data-priority', props.priority);
-  dueDate.textContent = `${
-    props.dueDate.getMonth() + 1
-  }/${props.dueDate.getDate()}/${props.dueDate.getFullYear()}`;
+  priorityDisplay.textContent = priority;
+  taskListItemContainer.setAttribute('data-priority', priority);
+
+  let formattedDate = formatDate(dueDate).split('-');
+
+  dueDateSpan.textContent = `${formattedDate[1]}/${formattedDate[2]}/${formattedDate[0]}`;
   editBtn.src = editIcon;
   delBtn.src = delIcon;
 
   startSection.appendChild(checkBox);
-  startSection.appendChild(title);
+  startSection.appendChild(nameHeading);
 
   endSection.appendChild(detailsBtn);
   endSection.appendChild(priorityDisplay);
-  endSection.appendChild(dueDate);
+  endSection.appendChild(dueDateSpan);
   endSection.appendChild(editBtn);
   endSection.appendChild(delBtn);
 
   taskListItemContainer.appendChild(startSection);
   taskListItemContainer.appendChild(endSection);
+
+  let request = {
+    action: 'edit',
+    type: 'task',
+    details: props.task,
+  };
+
+  const updateListItem = (response) => {
+    let updatedItem = updateKeyValuePairs(props.task, response);
+    dataFlow.updateListArr(props.task, updatedItem);
+  };
+
+  editBtn.addEventListener(
+    'click',
+    dataFlow.createModal.bind(undefined, request, updateListItem)
+  );
 
   return { element: taskListItemContainer };
 };

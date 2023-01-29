@@ -1,4 +1,5 @@
 import ModalControls from '../ModalControls/ModalControls';
+import formatDate from '../../../../utility/formatDate';
 
 import './ModalTask.scss';
 
@@ -107,17 +108,7 @@ const ModalTask = (props, windowContainer) => {
   if (props.action === 'edit' || props.action === 'view') {
     nameInput.value = details.name;
 
-    let dateObj = new Date(parseInt(details.dueDate));
-    let year = dateObj.getFullYear();
-    let month =
-      dateObj.getMonth() < 9
-        ? '0' + (dateObj.getMonth() + 1)
-        : dateObj.getMonth() + 1;
-    let day =
-      dateObj.getDate() < 10 ? '0' + dateObj.getDate() : dateObj.getDate();
-    let formattedDate = `${year}-${month}-${day}`;
-
-    dueDateInput.value = formattedDate;
+    dueDateInput.value = formatDate(details.dueDate);
 
     prioritySelect.value = details.priority;
     prioritySelect.dispatchEvent(new Event('change', { bubbles: false }));

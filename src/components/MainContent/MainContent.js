@@ -2,10 +2,10 @@ import TaskList from './TaskList/TaskList';
 
 import './MainContent.scss';
 
-const MainContent = () => {
+const MainContent = (dataFlow) => {
   const mainContentContainer = document.createElement('div');
   const header = document.createElement('h2');
-  const taskList = TaskList();
+  const taskList = TaskList(dataFlow);
   const addBtn = document.createElement('button');
 
   mainContentContainer.classList.add('main-content');
