@@ -4,7 +4,7 @@ import capitalize from '../../utility/capitalize';
 
 import './Modal.scss';
 
-const Modal = (props) => {
+const Modal = (props, callBack) => {
   const modalContainer = document.createElement('div');
   const modalWindow = document.createElement('div');
   const header = document.createElement('h2');
@@ -12,14 +12,10 @@ const Modal = (props) => {
   let formDataJSON = {};
   let { type, action, details = {} } = props;
 
-  let response = {
-    type,
-    action,
-    details: { ...formDataJSON },
-  };
+  let response = {};
 
-  const updateResponseDetails = () => {
-    response.details = formDataJSON;
+  const updateResponse = () => {
+    response = formDataJSON;
   };
 
   const getResponse = () => {
@@ -28,7 +24,6 @@ const Modal = (props) => {
 
   function updateFormData(event) {
     event.preventDefault();
-    formDataJSON = {};
 
     if (this.form.checkValidity()) {
       const formData = new FormData(this.form);
@@ -46,8 +41,10 @@ const Modal = (props) => {
 
         formDataJSON[key] = data[1];
       }
-      updateResponseDetails();
+
+      updateResponse();
       closeModal();
+      callBack(response);
     }
   }
 

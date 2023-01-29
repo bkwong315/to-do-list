@@ -2,12 +2,12 @@ import addIcon from './imgs/add.svg';
 import ListsList from './ListsList';
 import './ListSection.scss';
 
-const ListsSection = () => {
+const ListsSection = (dataFlow) => {
   const listsContainer = document.createElement('div');
   const sectionHeader = document.createElement('div');
   const addBtn = document.createElement('img');
   const heading = document.createElement('h2');
-  const listsList = ListsList();
+  const listsList = ListsList(dataFlow);
 
   listsContainer.classList.add('lists-section');
   sectionHeader.classList.add('section-header');
