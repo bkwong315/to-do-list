@@ -22,6 +22,15 @@ const ListsSection = (dataFlow) => {
   listsContainer.appendChild(sectionHeader);
   listsContainer.appendChild(listsList);
 
+  addBtn.addEventListener(
+    'click',
+    dataFlow.createModal.bind(
+      undefined,
+      { action: 'add', type: 'list' },
+      dataFlow.addList
+    )
+  );
+
   return listsContainer;
 };
 

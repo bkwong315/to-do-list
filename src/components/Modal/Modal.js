@@ -47,6 +47,8 @@ const Modal = (props, callBack) => {
 
       if (type === 'task') {
         formDataJSON.completed = false;
+      } else if (type === 'list') {
+        formDataJSON.tasks = [];
       }
 
       updateResponse();

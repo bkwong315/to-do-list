@@ -43,7 +43,12 @@ const ListsList = (dataFlow) => {
     }
   };
 
-  Object.assign(dataFlow, { updateListArr, removeList });
+  const addList = (list) => {
+    listArr.push(list);
+    updateDisplay();
+  };
+
+  Object.assign(dataFlow, { updateListArr, removeList, addList });
   updateDisplay();
 
   return listsContainer;
