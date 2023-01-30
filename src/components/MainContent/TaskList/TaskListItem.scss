@@ -90,6 +90,7 @@ $secondary-color: #abe1ff;
     background-color: $primary-color;
     width: 1rem;
     height: 1rem;
+    border-radius: 4px;
 
     &:checked {
       background-image: url('./imgs/check.svg');
