@@ -68,9 +68,8 @@ const TaskList = (dataFlow) => {
 
     if (idxOfTask !== -1) {
       taskArr.splice(idxOfTask, 1);
+      updateDisplay();
     }
-
-    updateDisplay();
   };
 
   Object.assign(dataFlow, { updateTaskArr, removeTask });
