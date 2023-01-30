@@ -1,8 +1,9 @@
+import removeFromArr from '../../../../utility/removeFromArr';
 import ListItem from './ListItem';
 import './ListsList.scss';
 
 const ListsList = (dataFlow) => {
-  const listsArr = [
+  const listArr = [
     { name: 'List 1', tasks: [] },
     { name: 'List 2', tasks: [] },
   ];
@@ -12,7 +13,7 @@ const ListsList = (dataFlow) => {
   listsContainer.classList.add('lists-container');
 
   const populateListsContainer = () => {
-    for (let list of listsArr) {
+    for (let list of listArr) {
       let newListItem = Object.create(ListItem({ list, dataFlow }));
       listsContainer.appendChild(newListItem.element);
     }
@@ -29,21 +30,27 @@ const ListsList = (dataFlow) => {
     populateListsContainer();
   };
 
-  const updateListArr = (originalItem, updatedItem) => {
-    let targetItem = listsArr.find(
-      (element) => element.name === originalItem.name
+  const updateListArr = (originalList, updatedList) => {
+    let targetItem = listArr.find(
+      (element) => element.name === originalList.name
     );
 
-    let idxOfTarget = listsArr.indexOf(targetItem);
+    let idxOfTarget = listArr.indexOf(targetItem);
 
     if (targetItem !== undefined) {
-      listsArr[idxOfTarget] = updatedItem;
+      listArr[idxOfTarget] = updatedList;
     }
 
     updateDisplay();
   };
 
-  Object.assign(dataFlow, { updateListArr });
+  const removeList = (list) => {
+    if (removeFromArr(listArr, list)) {
+      updateDisplay();
+    }
+  };
+
+  Object.assign(dataFlow, { updateListArr, removeList });
   updateDisplay();
 
   return listsContainer;

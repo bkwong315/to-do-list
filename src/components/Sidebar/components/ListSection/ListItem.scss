@@ -19,8 +19,24 @@ $text-color-light: #fff;
     height: 1.25rem;
   }
 
-  .edit-btn {
-    justify-self: end;
+  .btn-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  img {
+    opacity: 0.5;
     width: 1rem;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+
+  .del-btn:hover {
+    filter: invert(18%) sepia(58%) saturate(5955%) hue-rotate(355deg)
+      brightness(82%) contrast(126%);
   }
 }
