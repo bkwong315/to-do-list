@@ -24,8 +24,8 @@ const TaskListItem = (props) => {
   startSection.classList.add('start-section');
   endSection.classList.add('end-section');
   priorityDisplay.classList.add('priority-display');
-  editBtn.classList.add('edit-btn');
-  delBtn.classList.add('del-btn');
+  editBtn.classList.add('task-edit-btn');
+  delBtn.classList.add('task-del-btn');
 
   checkBox.type = 'checkbox';
   checkBox.checked = completed;
@@ -61,7 +61,7 @@ const TaskListItem = (props) => {
 
   const updateListItem = (response) => {
     let updatedItem = updateKeyValuePairs(props.task, response);
-    dataFlow.updateListArr(props.task, updatedItem);
+    dataFlow.updateTaskArr(props.task, updatedItem);
   };
 
   const removeListItem = () => {

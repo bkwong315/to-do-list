@@ -1,4 +1,5 @@
 import removeFromArr from '../../../../utility/removeFromArr';
+import updateArrElement from '../../../../utility/updateArrElement';
 import ListItem from './ListItem';
 import './ListsList.scss';
 
@@ -31,17 +32,9 @@ const ListsList = (dataFlow) => {
   };
 
   const updateListArr = (originalList, updatedList) => {
-    let targetItem = listArr.find(
-      (element) => element.name === originalList.name
-    );
-
-    let idxOfTarget = listArr.indexOf(targetItem);
-
-    if (targetItem !== undefined) {
-      listArr[idxOfTarget] = updatedList;
+    if (updateArrElement(listArr, originalList, updatedList, 'name')) {
+      updateDisplay();
     }
-
-    updateDisplay();
   };
 
   const removeList = (list) => {

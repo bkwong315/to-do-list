@@ -1,4 +1,6 @@
 import TaskListItem from './TaskListItem';
+import updateArrElement from '../../../utility/updateArrElement';
+import removeFromArr from '../../../utility/removeFromArr';
 
 import './TaskList.scss';
 
@@ -50,24 +52,14 @@ const TaskList = (dataFlow) => {
   };
 
   const updateTaskArr = (originalTask, updatedTask) => {
-    let targetItem = taskArr.find(
-      (element) => element.name === originalTask.name
-    );
-
-    let idxOfTask = taskArr.indexOf(targetItem);
-
-    if (targetItem !== undefined) {
-      taskArr[idxOfTask] = updatedTask;
+    console.trace();
+    if (updateArrElement(taskArr, originalTask, updatedTask, 'name')) {
+      updateDisplay();
     }
-
-    updateDisplay();
   };
 
   const removeTask = (task) => {
-    let idxOfTask = taskArr.indexOf(task);
-
-    if (idxOfTask !== -1) {
-      taskArr.splice(idxOfTask, 1);
+    if (removeFromArr(taskArr, task)) {
       updateDisplay();
     }
   };
