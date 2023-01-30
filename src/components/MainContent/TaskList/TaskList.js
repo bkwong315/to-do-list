@@ -49,21 +49,31 @@ const TaskList = (dataFlow) => {
     populateListsContainer();
   };
 
-  const updateListArr = (originalItem, updatedItem) => {
+  const updateTaskArr = (originalTask, updatedTask) => {
     let targetItem = taskArr.find(
-      (element) => element.name === originalItem.name
+      (element) => element.name === originalTask.name
     );
 
-    let idxOfTarget = taskArr.indexOf(targetItem);
+    let idxOfTask = taskArr.indexOf(targetItem);
 
     if (targetItem !== undefined) {
-      taskArr[idxOfTarget] = updatedItem;
+      taskArr[idxOfTask] = updatedTask;
     }
 
     updateDisplay();
   };
 
-  Object.assign(dataFlow, { updateListArr });
+  const removeTask = (task) => {
+    let idxOfTask = taskArr.indexOf(task);
+
+    if (idxOfTask !== -1) {
+      taskArr.splice(idxOfTask, 1);
+    }
+
+    updateDisplay();
+  };
+
+  Object.assign(dataFlow, { updateTaskArr, removeTask });
   updateDisplay();
 
   return taskListContainer;

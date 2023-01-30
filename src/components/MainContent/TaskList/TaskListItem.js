@@ -64,10 +64,16 @@ const TaskListItem = (props) => {
     dataFlow.updateListArr(props.task, updatedItem);
   };
 
+  const removeListItem = () => {
+    dataFlow.removeTask(props.task);
+  };
+
   editBtn.addEventListener(
     'click',
     dataFlow.createModal.bind(undefined, request, updateListItem)
   );
+
+  delBtn.addEventListener('click', removeListItem);
 
   return { element: taskListItemContainer };
 };
