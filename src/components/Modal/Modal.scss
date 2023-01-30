@@ -12,11 +12,17 @@ $secondary-color: #abe1ff;
 }
 
 .modal-window {
-  & > h2 {
+  & > .modal-header {
+    display: flex;
+    justify-content: space-between;
     background-color: $primary-color;
     padding: 0.5rem 1rem;
     border-radius: 12px 12px 0 0;
     color: #fff;
+
+    & img {
+      width: 1rem;
+    }
   }
 
   & > .modal-content {

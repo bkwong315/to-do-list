@@ -2,17 +2,18 @@ import ModalList from './components/ModalList/ModalList';
 import ModalTask from './components/ModalTask/ModalTask';
 import capitalize from '../../utility/capitalize';
 
+import closeIcon from './imgs/close.svg';
 import './Modal.scss';
 
 const Modal = (props, callBack) => {
   const modalContainer = document.createElement('div');
   const modalWindow = document.createElement('div');
-  const header = document.createElement('h2');
+  const header = document.createElement('div');
+  const headerText = document.createElement('h2');
+  const headerCloseBtn = document.createElement('img');
   const content = document.createElement('div');
   let formDataJSON = {};
   let { type, action, details = {} } = props;
-
-  console.log(props);
 
   let response = {};
 
@@ -54,6 +55,14 @@ const Modal = (props, callBack) => {
     modalContainer.parentElement.removeChild(modalContainer);
   };
 
+  headerCloseBtn.addEventListener('click', closeModal);
+  headerCloseBtn.src = closeIcon;
+
+  header.classList.add('modal-header');
+
+  header.appendChild(headerText);
+  header.appendChild(headerCloseBtn);
+
   modalWindow.appendChild(header);
   modalWindow.appendChild(content);
 
@@ -62,9 +71,9 @@ const Modal = (props, callBack) => {
   content.classList.add('modal-content');
 
   if (props.action === 'view') {
-    header.textContent = capitalize(details.name);
+    headerText.textContent = capitalize(details.name);
   } else {
-    header.textContent = `${capitalize(action)} ${capitalize(type)}`;
+    headerText.textContent = `${capitalize(action)} ${capitalize(type)}`;
   }
 
   modalWindow.classList.add(`${props.action}-${props.type}`);
