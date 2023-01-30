@@ -45,6 +45,10 @@ const Modal = (props, callBack) => {
         formDataJSON[key] = data[1];
       }
 
+      if (type === 'task') {
+        formDataJSON.completed = false;
+      }
+
       updateResponse();
       closeModal();
       callBack(response);

@@ -63,7 +63,12 @@ const TaskList = (dataFlow) => {
     }
   };
 
-  Object.assign(dataFlow, { updateTaskArr, removeTask });
+  const addTask = (task) => {
+    taskArr.push(task);
+    updateDisplay();
+  };
+
+  Object.assign(dataFlow, { updateTaskArr, removeTask, addTask });
   updateDisplay();
 
   return taskListContainer;

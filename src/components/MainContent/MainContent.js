@@ -17,6 +17,15 @@ const MainContent = (dataFlow) => {
   mainContentContainer.appendChild(taskList);
   mainContentContainer.appendChild(addBtn);
 
+  addBtn.addEventListener(
+    'click',
+    dataFlow.createModal.bind(
+      undefined,
+      { action: 'add', type: 'task' },
+      dataFlow.addTask
+    )
+  );
+
   return mainContentContainer;
 };
 
