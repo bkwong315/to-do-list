@@ -12,6 +12,8 @@ const Modal = (props, callBack) => {
   let formDataJSON = {};
   let { type, action, details = {} } = props;
 
+  console.log(props);
+
   let response = {};
 
   const updateResponse = () => {
@@ -60,7 +62,7 @@ const Modal = (props, callBack) => {
   content.classList.add('modal-content');
 
   if (props.action === 'view') {
-    header.textContent = capitalize(details.title);
+    header.textContent = capitalize(details.name);
   } else {
     header.textContent = `${capitalize(action)} ${capitalize(type)}`;
   }

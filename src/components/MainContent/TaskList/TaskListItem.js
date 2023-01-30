@@ -79,6 +79,15 @@ const TaskListItem = (props) => {
 
   delBtn.addEventListener('click', removeListItem);
 
+  detailsBtn.addEventListener(
+    'click',
+    dataFlow.createModal.bind(undefined, {
+      action: 'view',
+      type: 'task',
+      details: props.task,
+    })
+  );
+
   return { element: taskListItemContainer };
 };
 
