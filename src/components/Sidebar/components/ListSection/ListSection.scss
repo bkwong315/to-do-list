@@ -6,6 +6,17 @@
 
   img {
     justify-self: flex-end;
+    opacity: 0.5;
     width: 1rem;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+
+  .del-btn:hover {
+    filter: invert(18%) sepia(58%) saturate(5955%) hue-rotate(355deg)
+      brightness(82%) contrast(126%);
   }
 }
