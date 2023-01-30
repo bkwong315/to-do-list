@@ -52,7 +52,6 @@ const TaskList = (dataFlow) => {
   };
 
   const updateTaskArr = (originalTask, updatedTask) => {
-    console.trace();
     if (updateArrElement(taskArr, originalTask, updatedTask, 'name')) {
       updateDisplay();
     }

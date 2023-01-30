@@ -68,6 +68,10 @@ const TaskListItem = (props) => {
     dataFlow.removeTask(props.task);
   };
 
+  checkBox.addEventListener('click', () => {
+    updateListItem({ completed: !completed });
+  });
+
   editBtn.addEventListener(
     'click',
     dataFlow.createModal.bind(undefined, request, updateListItem)
