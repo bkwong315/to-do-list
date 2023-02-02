@@ -7,7 +7,7 @@ import weekIcon from './imgs/week.svg';
 import pinnedIcon from './imgs/pinned.svg';
 import './SideBar.scss';
 
-const SideBar = (dataFlow) => {
+const SideBar = (props, dataFlow) => {
   const sideBarContainer = document.createElement('div');
   const navigationLinks = document.createElement('div');
 
@@ -72,7 +72,7 @@ const SideBar = (dataFlow) => {
       dataFlow,
     })
   );
-  const listSection = ListSection(dataFlow);
+  const listSection = ListSection(props, dataFlow);
 
   sideBarContainer.classList.add('sidebar');
   navigationLinks.classList.add('nav-links');
