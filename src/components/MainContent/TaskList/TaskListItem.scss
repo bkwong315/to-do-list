@@ -108,6 +108,7 @@ $secondary-color: #abe1ff;
     @include buttonShape;
 
     background: none;
+    cursor: pointer;
   }
 
   .priority-display {
