@@ -1,10 +1,12 @@
-const updateArrElement = (arr, original, updated, value) => {
-  let target = arr.find((element) => element[value] === original[value]);
+import updateKeyValuePairs from './updateKeyValuePairs';
 
-  let idxOfTarget = arr.indexOf(target);
+const updateArrElement = (arr, original, updated, identifier) => {
+  let target = arr.find(
+    (element) => element[identifier] === original[identifier]
+  );
 
   if (target !== undefined) {
-    arr[idxOfTarget] = updated;
+    updateKeyValuePairs(target, updated);
     return true;
   }
 

@@ -1,5 +1,4 @@
 import removeFromArr from '../../../../utility/removeFromArr';
-import updateArrElement from '../../../../utility/updateArrElement';
 import ListItem from './ListItem';
 import './ListsList.scss';
 
@@ -14,7 +13,9 @@ const ListsList = (props, dataFlow) => {
     for (let list of listArr) {
       if (list.id === '__inbox__') continue;
 
-      let newListItem = Object.create(ListItem({ list, dataFlow }));
+      let newListItem = Object.create(
+        ListItem({ list, updateDisplay, dataFlow })
+      );
       listsContainer.appendChild(newListItem.element);
     }
   };
@@ -31,9 +32,7 @@ const ListsList = (props, dataFlow) => {
   };
 
   const updateListArr = (originalList, updatedList) => {
-    if (updateArrElement(listArr, originalList, updatedList, 'name')) {
-      updateDisplay();
-    }
+    dataFlow.updateDataArrList(originalList, updatedList, updateDisplay);
   };
 
   const removeList = (list) => {

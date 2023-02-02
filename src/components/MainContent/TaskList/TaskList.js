@@ -1,11 +1,9 @@
 import TaskListItem from './TaskListItem';
-import updateArrElement from '../../../utility/updateArrElement';
-import removeFromArr from '../../../utility/removeFromArr';
 
 import './TaskList.scss';
 
 const TaskList = (props, dataFlow) => {
-  let taskArr = props.tasks;
+  let { id: list_id, tasks: taskArr } = props;
 
   const taskListContainer = document.createElement('div');
 
@@ -14,7 +12,9 @@ const TaskList = (props, dataFlow) => {
   const populateListsContainer = () => {
     if (taskArr.length < 1) return;
     for (let task of taskArr) {
-      let newListItem = Object.create(TaskListItem({ task, dataFlow }));
+      let newListItem = Object.create(
+        TaskListItem({ list_id, task, updateDisplay, dataFlow })
+      );
       taskListContainer.appendChild(newListItem.element);
     }
   };
@@ -30,32 +30,15 @@ const TaskList = (props, dataFlow) => {
     populateListsContainer();
   };
 
-  const updateTaskArr = (originalTask, updatedTask) => {
-    if (updateArrElement(taskArr, originalTask, updatedTask, 'name')) {
-      updateDisplay();
-    }
-  };
-
-  const removeTask = (task) => {
-    if (removeFromArr(taskArr, task)) {
-      updateDisplay();
-    }
-  };
-
-  const addTask = (task) => {
-    taskArr.push(task);
-    updateDisplay();
-  };
-
   const loadTaskArr = (newTaskArr) => {
     taskArr = newTaskArr;
     updateDisplay();
   };
 
-  Object.assign(dataFlow, { loadTaskArr, updateTaskArr, removeTask, addTask });
+  Object.assign(dataFlow, { loadTaskArr });
   updateDisplay();
 
-  return taskListContainer;
+  return { element: taskListContainer };
 };
 
 export default TaskList;

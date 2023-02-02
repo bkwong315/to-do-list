@@ -3,10 +3,10 @@ import TaskList from './TaskList/TaskList';
 import './MainContent.scss';
 
 const MainContent = (props, dataFlow) => {
-  let { id, name, tasks } = props;
+  let { id, name, tasks } = props.selectedList;
   const mainContentContainer = document.createElement('div');
   const header = document.createElement('h2');
-  const taskList = TaskList({ tasks }, dataFlow);
+  const taskList = Object.create(TaskList({ id, tasks }, dataFlow));
   const addBtn = document.createElement('button');
 
   mainContentContainer.classList.add('main-content');
@@ -19,13 +19,13 @@ const MainContent = (props, dataFlow) => {
     dataFlow.loadTaskArr(tasks);
 
     if (id !== '__today__' && id !== '__week__' && id !== '__pinned__') {
-      console.log('add-btn');
       mainContentContainer.appendChild(addBtn);
     }
   };
 
   const updateListInfo = (newProps) => {
     ({ id, name, tasks } = newProps);
+    dataFlow.loadTaskArr(tasks);
     updateDisplay();
   };
 
@@ -33,7 +33,7 @@ const MainContent = (props, dataFlow) => {
   addBtn.textContent = '+ Add Task';
 
   mainContentContainer.appendChild(header);
-  mainContentContainer.appendChild(taskList);
+  mainContentContainer.appendChild(taskList.element);
 
   updateDisplay();
 

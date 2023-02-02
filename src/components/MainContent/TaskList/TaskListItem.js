@@ -1,4 +1,3 @@
-import updateKeyValuePairs from '../../../utility/updateKeyValuePairs';
 import formatDate from '../../../utility/formatDate';
 
 import editIcon from './imgs/edit.svg';
@@ -67,20 +66,27 @@ const TaskListItem = (props) => {
   };
 
   const updateListItem = (response) => {
-    let updatedItem = updateKeyValuePairs(props.task, response);
-    dataFlow.updateTaskArr(props.task, updatedItem);
+    dataFlow.updateDataArrTask(props.task, response, props.updateDisplay);
   };
 
   const removeListItem = () => {
-    dataFlow.removeTask(props.task);
+    dataFlow.removeTask(props.task, props.updateDisplay);
   };
 
   completedButton.addEventListener('click', () => {
-    updateListItem({ completed: !completed });
+    dataFlow.updateDataArrTask(
+      props.task,
+      { completed: !completed },
+      props.updateDisplay
+    );
   });
 
   pinButton.addEventListener('click', () => {
-    updateListItem({ pinned: !pinned });
+    dataFlow.updateDataArrTask(
+      props.task,
+      { pinned: !pinned },
+      props.updateDisplay
+    );
   });
 
   editBtn.addEventListener(

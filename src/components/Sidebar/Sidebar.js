@@ -24,7 +24,7 @@ const SideBar = (props, dataFlow) => {
     NavLink({
       linkName: 'inbox',
       icon: inboxIcon,
-      filterFunc: () => {},
+      filterFunc: (task) => task.list_id === '__inbox__',
       filteredListTemplate: { id: '__inbox__', name: 'Inbox' },
       dataFlow,
     })
