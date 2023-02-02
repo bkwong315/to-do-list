@@ -79,6 +79,10 @@ const TaskListItem = (props) => {
     updateListItem({ completed: !completed });
   });
 
+  pinButton.addEventListener('click', () => {
+    updateListItem({ pinned: !pinned });
+  });
+
   editBtn.addEventListener(
     'click',
     dataFlow.createModal.bind(undefined, request, updateListItem)
