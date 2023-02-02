@@ -6,12 +6,13 @@ import delIcon from './imgs/delete.svg';
 import './TaskListItem.scss';
 
 const TaskListItem = (props) => {
-  let { name, completed, priority, dueDate } = props.task;
+  let { name, completed, pinned, priority, dueDate } = props.task;
   let dataFlow = props.dataFlow;
 
   const taskListItemContainer = document.createElement('div');
   const startSection = document.createElement('div');
-  const checkBox = document.createElement('input');
+  const completedButton = document.createElement('input');
+  const pinButton = document.createElement('input');
   const nameHeading = document.createElement('h3');
   const endSection = document.createElement('div');
   const detailsBtn = document.createElement('button');
@@ -26,9 +27,14 @@ const TaskListItem = (props) => {
   priorityDisplay.classList.add('priority-display');
   editBtn.classList.add('task-edit-btn');
   delBtn.classList.add('task-del-btn');
+  completedButton.classList.add('completed-checkbox');
+  pinButton.classList.add('pinned-checkbox');
 
-  checkBox.type = 'checkbox';
-  checkBox.checked = completed;
+  completedButton.type = 'checkbox';
+  completedButton.checked = completed;
+
+  pinButton.type = 'checkbox';
+  pinButton.checked = pinned;
 
   nameHeading.textContent = name;
   detailsBtn.textContent = 'Details';
@@ -41,7 +47,8 @@ const TaskListItem = (props) => {
   editBtn.src = editIcon;
   delBtn.src = delIcon;
 
-  startSection.appendChild(checkBox);
+  startSection.appendChild(pinButton);
+  startSection.appendChild(completedButton);
   startSection.appendChild(nameHeading);
 
   endSection.appendChild(detailsBtn);
@@ -68,7 +75,7 @@ const TaskListItem = (props) => {
     dataFlow.removeTask(props.task);
   };
 
-  checkBox.addEventListener('click', () => {
+  completedButton.addEventListener('click', () => {
     updateListItem({ completed: !completed });
   });
 
