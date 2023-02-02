@@ -29,12 +29,23 @@ const ModalTask = (props, windowContainer) => {
   const dueDateContainer = document.createElement('div');
   const dueDateLabel = document.createElement('label');
   const dueDateInput = document.createElement('input');
+  const currDateObj = new Date();
 
   dueDateLabel.textContent = 'Due Date:';
   dueDateLabel.setAttribute('for', 'due-date-input');
   dueDateInput.type = 'date';
   dueDateInput.id = 'due-date-input';
   dueDateInput.name = 'due-date-input';
+
+  dueDateInput.value = `${currDateObj.getFullYear()}-${
+    currDateObj.getMonth() + 1 > 9
+      ? currDateObj.getMonth() + 1
+      : '0' + (currDateObj.getMonth() + 1)
+  }-${
+    currDateObj.getDate() > 9
+      ? currDateObj.getDate()
+      : '0' + currDateObj.getDate()
+  }`;
   dueDateContainer.classList.add('due-date-container');
 
   dueDateContainer.appendChild(dueDateLabel);
