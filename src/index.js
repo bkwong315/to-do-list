@@ -102,7 +102,6 @@ const App = (() => {
     let newTask = Object.assign(task, { list_id: selectedList.id });
     data.filter((list) => list.id === selectedList.id)[0].tasks.push(newTask);
     selectedList.tasks.push(newTask);
-    console.log(selectedList);
     loadList(selectedList);
   };
 

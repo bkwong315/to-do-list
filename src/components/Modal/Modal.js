@@ -27,7 +27,6 @@ const Modal = (props, callBack) => {
 
   function updateFormData(event) {
     event.preventDefault();
-    console.log(type);
 
     if (this.form.checkValidity()) {
       const formData = new FormData(this.form);
@@ -51,10 +50,6 @@ const Modal = (props, callBack) => {
           formDataJSON.completed === undefined ? false : formDataJSON.completed;
         formDataJSON.pinned =
           formDataJSON.pinned === undefined ? false : formDataJSON.pinned;
-        console.log(
-          formDataJSON.pinned === undefined ? false : formDataJSON.pinned
-        );
-        console.log(formDataJSON);
       } else if (type === 'list') {
         formDataJSON.tasks = [];
       }
