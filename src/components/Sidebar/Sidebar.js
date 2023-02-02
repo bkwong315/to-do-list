@@ -25,6 +25,7 @@ const SideBar = (dataFlow) => {
       linkName: 'inbox',
       icon: inboxIcon,
       filterFunc: () => {},
+      filteredListTemplate: { id: '__inbox__', name: 'Inbox' },
       dataFlow,
     })
   );
@@ -39,6 +40,7 @@ const SideBar = (dataFlow) => {
           new Date().withoutTime().valueOf()
         );
       },
+      filteredListTemplate: { id: '__today__', name: 'Today' },
       dataFlow,
     })
   );
@@ -56,6 +58,7 @@ const SideBar = (dataFlow) => {
 
         return currDate <= taskDate && taskDate <= currDate + weekInMs;
       },
+      filteredListTemplate: { id: '__week__', name: 'Week' },
       dataFlow,
     })
   );
@@ -65,6 +68,7 @@ const SideBar = (dataFlow) => {
       linkName: 'pinned',
       icon: pinnedIcon,
       filterFunc: (task) => task.pinned,
+      filteredListTemplate: { id: '__pinned__', name: 'Pinned' },
       dataFlow,
     })
   );

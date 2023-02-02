@@ -2,20 +2,40 @@ import TaskList from './TaskList/TaskList';
 
 import './MainContent.scss';
 
-const MainContent = (dataFlow) => {
+const MainContent = (props, dataFlow) => {
+  let { id, name, tasks } = props;
   const mainContentContainer = document.createElement('div');
   const header = document.createElement('h2');
-  const taskList = TaskList(dataFlow);
+  const taskList = TaskList({ tasks }, dataFlow);
   const addBtn = document.createElement('button');
 
   mainContentContainer.classList.add('main-content');
 
-  header.textContent = 'Inbox';
+  const updateDisplay = () => {
+    if (mainContentContainer.querySelector('#add-btn')) {
+      mainContentContainer.removeChild(addBtn);
+    }
+    header.textContent = name;
+    dataFlow.loadTaskArr(tasks);
+
+    if (id !== '__today__' && id !== '__week__' && id !== '__pinned__') {
+      console.log('add-btn');
+      mainContentContainer.appendChild(addBtn);
+    }
+  };
+
+  const updateListInfo = (newProps) => {
+    ({ id, name, tasks } = newProps);
+    updateDisplay();
+  };
+
+  addBtn.id = 'add-btn';
   addBtn.textContent = '+ Add Task';
 
   mainContentContainer.appendChild(header);
   mainContentContainer.appendChild(taskList);
-  mainContentContainer.appendChild(addBtn);
+
+  updateDisplay();
 
   addBtn.addEventListener(
     'click',
@@ -26,7 +46,7 @@ const MainContent = (dataFlow) => {
     )
   );
 
-  return mainContentContainer;
+  return { element: mainContentContainer, updateListInfo };
 };
 
 export default MainContent;

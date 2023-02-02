@@ -11,29 +11,29 @@ const App = (() => {
     appContainer.append(modal.element);
   };
 
-  const dataFlow = { createModal };
+  const loadList = (list) => {
+    selectedList = list;
+    updateMainContent();
+  };
+
+  const updateMainContent = () => {
+    mainContent.updateListInfo(selectedList);
+  };
+
+  const dataFlow = { createModal, loadList, updateMainContent };
 
   let appContainer = document.createElement('div');
   let header = Header();
   let sideBar = SideBar(dataFlow);
-  let mainContent = MainContent(dataFlow);
 
-  /* let modal = Modal({
-    action: 'add',
-    type: 'task',
-    details: {
-      name: 'Task 1',
-      desc: 'Task 1 description',
-      priority: 'high',
-      dueDate: new Date(2023, 0, 21).valueOf(),
-    },
-  }); */
+  let selectedList = dataFlow.getListArr()[0];
+  let mainContent = MainContent(selectedList, dataFlow);
 
   appContainer.classList.add('app-container');
 
   appContainer.appendChild(header);
   appContainer.appendChild(sideBar);
-  appContainer.appendChild(mainContent);
+  appContainer.appendChild(mainContent.element);
 
   return appContainer;
 })();

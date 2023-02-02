@@ -1,7 +1,7 @@
 import './NavLink.scss';
 
 const NavLink = (props) => {
-  const { linkName, icon, filterFunc, dataFlow } = props;
+  const { linkName, icon, filterFunc, filteredListTemplate, dataFlow } = props;
   const navLinkContainer = document.createElement('div');
   const img = document.createElement('img');
   const label = document.createElement('span');
@@ -16,7 +16,7 @@ const NavLink = (props) => {
     let filteredArr = [];
 
     if (linkName === 'inbox') {
-      filteredArr = listArr[0];
+      filteredArr = listArr[0].tasks;
     } else {
       for (const list of listArr) {
         if (list.name === '__inbox__') continue;
@@ -24,7 +24,9 @@ const NavLink = (props) => {
       }
     }
 
-    dataFlow.loadTaskArr(filteredArr);
+    dataFlow.loadList(
+      Object.assign(filteredListTemplate, { tasks: filteredArr })
+    );
   });
   navLinkContainer.append(img);
   navLinkContainer.append(label);

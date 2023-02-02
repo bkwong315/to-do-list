@@ -5,8 +5,9 @@ import './ListsList.scss';
 
 const ListsList = (dataFlow) => {
   const listArr = [
-    { name: '__inbox__', tasks: [] },
+    { id: '__inbox__', name: 'Inbox', tasks: [] },
     {
+      id: 'list_1',
       name: 'List 1',
       tasks: [
         {
@@ -36,6 +37,7 @@ const ListsList = (dataFlow) => {
       ],
     },
     {
+      id: 'list_2',
       name: 'List 2',
       tasks: [
         {
@@ -72,7 +74,7 @@ const ListsList = (dataFlow) => {
 
   const populateListsContainer = () => {
     for (let list of listArr) {
-      if (list.name === '__inbox__') continue;
+      if (list.id === '__inbox__') continue;
 
       let newListItem = Object.create(ListItem({ list, dataFlow }));
       listsContainer.appendChild(newListItem.element);
