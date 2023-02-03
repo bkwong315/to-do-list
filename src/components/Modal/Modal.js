@@ -56,6 +56,7 @@ const Modal = (props, callBack) => {
         formDataJSON.list_id = formDataJSON.name;
         formDataJSON.tasks = [];
       }
+      console.log(callBack);
 
       updateResponse();
       closeModal();

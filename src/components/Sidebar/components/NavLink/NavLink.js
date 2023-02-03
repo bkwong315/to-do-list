@@ -14,7 +14,9 @@ const NavLink = (props) => {
   navLinkContainer.addEventListener('click', () => {
     let listArr = dataFlow.getListArr();
     let filteredArr = [];
+
     for (const list of listArr) {
+      console.log(list.tasks);
       filteredArr = [...filteredArr, ...list.tasks.filter(filterFunc)];
     }
 

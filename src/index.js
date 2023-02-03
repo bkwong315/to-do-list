@@ -88,7 +88,7 @@ const App = (() => {
   const loadData = () => {
     let retrievedData = localStorage.getItem('data');
     if (retrievedData === null)
-      return [{ id: '__inbox__', name: 'Inbox', tasks: [] }];
+      return [{ list_id: '__inbox__', name: 'Inbox', tasks: [] }];
     return JSON.parse(retrievedData);
   };
 
@@ -106,9 +106,8 @@ const App = (() => {
   };
 
   const updateDataArrTask = (originalTask, updatedTask) => {
-    console.log('task update');
     for (const list of data) {
-      if (list.id === originalTask.list_id) {
+      if (list.list_id === originalTask.list_id) {
         updateArrElement(list.tasks, originalTask, updatedTask, 'name');
         updateArrElement(selectedList.tasks, originalTask, updatedTask, 'name');
         saveData();
@@ -119,8 +118,11 @@ const App = (() => {
 
   const addTask = (task) => {
     console.log(selectedList);
+    console.log(data);
     let newTask = Object.assign(task, { list_id: selectedList.list_id });
-    data.filter((list) => list.id === selectedList.id)[0].tasks.push(newTask);
+    data
+      .filter((list) => list.list_id === selectedList.list_id)[0]
+      .tasks.push(newTask);
     selectedList.tasks.push(newTask);
     saveData();
     loadList(selectedList);
@@ -128,7 +130,7 @@ const App = (() => {
 
   const removeTask = (task) => {
     removeFromArr(
-      data.filter((list) => list.id === task.list_id)[0].tasks,
+      data.filter((list) => list.list_id === task.list_id)[0].tasks,
       task
     );
     removeFromArr(selectedList.tasks, task);
@@ -141,7 +143,7 @@ const App = (() => {
   };
 
   const loadList = (list) => {
-    selectedList = list;
+    selectedList = structuredClone(list);
     console.log(selectedList);
     updateMainContent();
   };
@@ -168,7 +170,7 @@ const App = (() => {
   let sideBar = SideBar({ data }, dataFlow);
 
   selectedList = {
-    id: data[0].id,
+    list_id: data[0].list_id,
     name: data[0].name,
     tasks: structuredClone(data[0].tasks),
   };

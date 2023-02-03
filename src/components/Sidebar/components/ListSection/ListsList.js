@@ -11,7 +11,7 @@ const ListsList = (props, dataFlow) => {
 
   const populateListsContainer = () => {
     for (let list of listArr) {
-      if (list.id === '__inbox__') continue;
+      if (list.list_id === '__inbox__') continue;
 
       let newListItem = Object.create(
         ListItem({ list, updateDisplay, dataFlow })
