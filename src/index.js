@@ -102,6 +102,12 @@ const App = (() => {
     if (updateArrElement(data, originalList, updatedList, 'name')) {
       saveData();
       updateDisplay();
+
+      if (selectedList.list_id === updatedList.list_id) {
+        loadList(
+          data.filter((list) => list.list_id === updatedList.list_id)[0]
+        );
+      }
     }
   };
 
