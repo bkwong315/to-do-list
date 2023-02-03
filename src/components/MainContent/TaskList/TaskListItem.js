@@ -59,12 +59,6 @@ const TaskListItem = (props) => {
   taskListItemContainer.appendChild(startSection);
   taskListItemContainer.appendChild(endSection);
 
-  let request = {
-    action: 'edit',
-    type: 'task',
-    details: props.task,
-  };
-
   const updateListItem = (response) => {
     dataFlow.updateDataArrTask(props.task, response, props.updateDisplay);
   };
@@ -91,7 +85,15 @@ const TaskListItem = (props) => {
 
   editBtn.addEventListener(
     'click',
-    dataFlow.createModal.bind(undefined, request, updateListItem)
+    dataFlow.createModal.bind(
+      undefined,
+      {
+        action: 'edit',
+        type: 'task',
+        details: props.task,
+      },
+      updateListItem
+    )
   );
 
   delBtn.addEventListener('click', removeListItem);
