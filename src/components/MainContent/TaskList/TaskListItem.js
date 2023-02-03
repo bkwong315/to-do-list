@@ -60,7 +60,7 @@ const TaskListItem = (props) => {
   taskListItemContainer.appendChild(endSection);
 
   const updateListItem = (response) => {
-    dataFlow.updateDataArrTask(props.task, response, props.updateDisplay);
+    dataFlow.updateDataArrTask(props.task, response);
   };
 
   const removeListItem = () => {
@@ -68,19 +68,11 @@ const TaskListItem = (props) => {
   };
 
   completedButton.addEventListener('click', () => {
-    dataFlow.updateDataArrTask(
-      props.task,
-      { completed: !completed },
-      props.updateDisplay
-    );
+    dataFlow.updateDataArrTask(props.task, { completed: !completed });
   });
 
   pinButton.addEventListener('click', () => {
-    dataFlow.updateDataArrTask(
-      props.task,
-      { pinned: !pinned },
-      props.updateDisplay
-    );
+    dataFlow.updateDataArrTask(props.task, { pinned: !pinned });
   });
 
   editBtn.addEventListener(

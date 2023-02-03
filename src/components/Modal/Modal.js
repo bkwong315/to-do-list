@@ -47,11 +47,9 @@ const Modal = (props, callBack) => {
 
       if (type === 'task') {
         formDataJSON.completed =
-          props.details.completed === undefined
-            ? false
-            : props.details.completed;
+          details.completed === undefined ? false : details.completed;
         formDataJSON.pinned =
-          props.details.pinned === undefined ? false : props.details.pinned;
+          details.pinned === undefined ? false : details.pinned;
       } else if (type === 'list') {
         formDataJSON.tasks = [];
       }

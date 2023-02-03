@@ -37,12 +37,14 @@ const ListsList = (props, dataFlow) => {
 
   const removeList = (list) => {
     if (removeFromArr(listArr, list)) {
+      dataFlow.saveData();
       updateDisplay();
     }
   };
 
   const addList = (list) => {
     listArr.push(list);
+    dataFlow.saveData();
     updateDisplay();
   };
 

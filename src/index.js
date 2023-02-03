@@ -8,7 +8,7 @@ import removeFromArr from './utility/removeFromArr';
 import './style.scss';
 
 const App = (() => {
-  let data = [
+  /* let data = [
     { id: '__inbox__', name: 'Inbox', tasks: [] },
     {
       id: 'list_1',
@@ -76,24 +76,40 @@ const App = (() => {
         },
       ],
     },
-  ];
+  ]; */
 
   const createModal = (request, callBack) => {
     let modal = Modal(request, callBack);
     appContainer.append(modal.element);
   };
 
+  const loadData = () => {
+    let retrievedData = localStorage.getItem('data');
+    if (retrievedData === null)
+      return [{ id: '__inbox__', name: 'Inbox', tasks: [] }];
+    return JSON.parse(retrievedData);
+  };
+
+  let data = loadData();
+
+  const saveData = () => {
+    localStorage.setItem('data', JSON.stringify(data));
+  };
+
   const updateDataArrList = (originalList, updatedList, updateDisplay) => {
     if (updateArrElement(data, originalList, updatedList, 'name')) {
+      saveData();
       updateDisplay();
     }
   };
 
-  const updateDataArrTask = (originalTask, updatedTask, updateDisplay) => {
+  const updateDataArrTask = (originalTask, updatedTask) => {
     for (const list of data) {
       if (list.id === originalTask.list_id) {
         updateArrElement(list.tasks, originalTask, updatedTask, 'name');
-        updateDisplay();
+        updateArrElement(selectedList.tasks, originalTask, updatedTask, 'name');
+        saveData();
+        loadList(selectedList);
       }
     }
   };
@@ -102,6 +118,7 @@ const App = (() => {
     let newTask = Object.assign(task, { list_id: selectedList.id });
     data.filter((list) => list.id === selectedList.id)[0].tasks.push(newTask);
     selectedList.tasks.push(newTask);
+    saveData();
     loadList(selectedList);
   };
 
@@ -111,6 +128,7 @@ const App = (() => {
       task
     );
     removeFromArr(selectedList.tasks, task);
+    saveData();
     loadList(selectedList);
   };
 
@@ -132,6 +150,7 @@ const App = (() => {
     updateDataArrTask,
     addTask,
     removeTask,
+    saveData,
   };
 
   let appContainer = document.createElement('div');
