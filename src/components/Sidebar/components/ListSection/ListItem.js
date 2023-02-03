@@ -49,6 +49,11 @@ const ListItem = (props) => {
     dataFlow.removeList.bind(undefined, props.list)
   );
 
+  listItemContainer.addEventListener(
+    'click',
+    dataFlow.loadList.bind(undefined, props.list)
+  );
+
   listItemContainer.appendChild(notification);
   listItemContainer.appendChild(listTitle);
   btnContainer.appendChild(editBtn);

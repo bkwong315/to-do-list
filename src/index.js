@@ -78,6 +78,8 @@ const App = (() => {
     },
   ]; */
 
+  let selectedList;
+
   const createModal = (request, callBack) => {
     let modal = Modal(request, callBack);
     appContainer.append(modal.element);
@@ -104,6 +106,7 @@ const App = (() => {
   };
 
   const updateDataArrTask = (originalTask, updatedTask) => {
+    console.log('task update');
     for (const list of data) {
       if (list.id === originalTask.list_id) {
         updateArrElement(list.tasks, originalTask, updatedTask, 'name');
@@ -115,7 +118,8 @@ const App = (() => {
   };
 
   const addTask = (task) => {
-    let newTask = Object.assign(task, { list_id: selectedList.id });
+    console.log(selectedList);
+    let newTask = Object.assign(task, { list_id: selectedList.list_id });
     data.filter((list) => list.id === selectedList.id)[0].tasks.push(newTask);
     selectedList.tasks.push(newTask);
     saveData();
@@ -132,8 +136,13 @@ const App = (() => {
     loadList(selectedList);
   };
 
+  const getList = () => {
+    return selectedList;
+  };
+
   const loadList = (list) => {
     selectedList = list;
+    console.log(selectedList);
     updateMainContent();
   };
 
@@ -144,6 +153,7 @@ const App = (() => {
   const dataFlow = {
     data,
     createModal,
+    getList,
     loadList,
     updateMainContent,
     updateDataArrList,
@@ -157,7 +167,7 @@ const App = (() => {
   let header = Header();
   let sideBar = SideBar({ data }, dataFlow);
 
-  let selectedList = {
+  selectedList = {
     id: data[0].id,
     name: data[0].name,
     tasks: structuredClone(data[0].tasks),

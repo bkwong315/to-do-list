@@ -24,7 +24,7 @@ const MainContent = (props, dataFlow) => {
   };
 
   const updateListInfo = (newProps) => {
-    ({ id, name, tasks } = newProps);
+    ({ list_id: id, name: name, tasks: tasks } = newProps);
     dataFlow.loadTaskArr(tasks);
     updateDisplay();
   };
@@ -37,14 +37,11 @@ const MainContent = (props, dataFlow) => {
 
   updateDisplay();
 
-  addBtn.addEventListener(
-    'click',
-    dataFlow.createModal.bind(
-      undefined,
-      { action: 'add', type: 'task' },
-      dataFlow.addTask
-    )
-  );
+  function addNewTask() {
+    dataFlow.createModal({ action: 'add', type: 'task' }, dataFlow.addTask);
+  }
+
+  addBtn.addEventListener('click', addNewTask);
 
   return { element: mainContentContainer, updateListInfo };
 };
