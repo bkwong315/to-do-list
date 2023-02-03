@@ -24,22 +24,24 @@ const ListItem = (props) => {
   editBtn.src = editIcon;
   delBtn.src = delIcon;
 
-  let request = {
-    action: 'edit',
-    type: 'list',
-    details: {
-      name: name,
-      tasks: tasks,
-    },
-  };
-
   const updateListItem = (response) => {
     dataFlow.updateListArr(props.list, response);
   };
 
   editBtn.addEventListener(
     'click',
-    dataFlow.createModal.bind(undefined, request, updateListItem)
+    dataFlow.createModal.bind(
+      undefined,
+      {
+        action: 'edit',
+        type: 'list',
+        details: {
+          name: name,
+          tasks: tasks,
+        },
+      },
+      updateListItem
+    )
   );
 
   delBtn.addEventListener(
