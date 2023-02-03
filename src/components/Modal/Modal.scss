@@ -2,7 +2,7 @@ $primary-color: #00a3ff;
 $secondary-color: #abe1ff;
 
 .modal-container {
-  position: absolute;
+  position: fixed;
   display: grid;
   justify-items: center;
   align-items: center;
