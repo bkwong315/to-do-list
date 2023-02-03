@@ -3,7 +3,7 @@ import delIcon from './imgs/delete.svg';
 import './ListItem.scss';
 
 const ListItem = (props) => {
-  let { name, tasks } = props.list;
+  let { list_id, name, tasks } = props.list;
   let dataFlow = props.dataFlow;
 
   const listItemContainer = document.createElement('div');
@@ -36,6 +36,7 @@ const ListItem = (props) => {
         action: 'edit',
         type: 'list',
         details: {
+          list_id: list_id,
           name: name,
           tasks: tasks,
         },

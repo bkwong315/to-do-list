@@ -16,7 +16,6 @@ const NavLink = (props) => {
     let filteredArr = [];
 
     for (const list of listArr) {
-      console.log(list.tasks);
       filteredArr = [...filteredArr, ...list.tasks.filter(filterFunc)];
     }
 

@@ -117,8 +117,6 @@ const App = (() => {
   };
 
   const addTask = (task) => {
-    console.log(selectedList);
-    console.log(data);
     let newTask = Object.assign(task, { list_id: selectedList.list_id });
     data
       .filter((list) => list.list_id === selectedList.list_id)[0]
@@ -144,7 +142,6 @@ const App = (() => {
 
   const loadList = (list) => {
     selectedList = structuredClone(list);
-    console.log(selectedList);
     updateMainContent();
   };
 

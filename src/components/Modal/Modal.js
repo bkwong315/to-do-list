@@ -28,8 +28,6 @@ const Modal = (props, callBack) => {
   function updateFormData(event) {
     event.preventDefault();
 
-    console.log(props);
-
     if (this.form.checkValidity()) {
       const formData = new FormData(this.form);
 
@@ -53,10 +51,10 @@ const Modal = (props, callBack) => {
         formDataJSON.pinned =
           details.pinned === undefined ? false : details.pinned;
       } else if (type === 'list') {
-        formDataJSON.list_id = formDataJSON.name;
+        formDataJSON.list_id =
+          details.list_id === undefined ? formDataJSON.name : details.list_id;
         formDataJSON.tasks = [];
       }
-      console.log(callBack);
 
       updateResponse();
       closeModal();
