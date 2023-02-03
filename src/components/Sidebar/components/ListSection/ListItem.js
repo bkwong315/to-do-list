@@ -1,5 +1,3 @@
-import updateKeyValuePairs from '../../../../utility/updateKeyValuePairs';
-
 import editIcon from './imgs/edit.svg';
 import delIcon from './imgs/delete.svg';
 import './ListItem.scss';
@@ -36,8 +34,7 @@ const ListItem = (props) => {
   };
 
   const updateListItem = (response) => {
-    let updatedItem = updateKeyValuePairs(props.list, response);
-    dataFlow.updateListArr(props.list, updatedItem);
+    dataFlow.updateListArr(props.list, response);
   };
 
   editBtn.addEventListener(
